@@ -1,0 +1,182 @@
+{% load static tailwind_tags %} {% load nexui_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaire HTMX</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+
+    {% tailwind_css %}
+  </head>
+
+  <body>
+    <form id="simple-form">
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="Envoyer" type="submit" class="bg-yellow-500 text-black"%}
+    </form>
+
+    <form
+      id="simple-form"
+      hx-post="{% url 'submit-form' %}"
+      hx-target="#result"
+      hx-swap="innerHTML"
+    >
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="Envoyer avec HTMX" type="submit" class="bg-green-500 hover:bg-green-300 hover:text-black text-white" %}
+    </form>
+
+    <form
+      id="simple-form"
+      hx-post="{% url 'submit-form' %}"
+      hx-target="#result"
+      hx-swap="innerHTML"
+    >
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="Envoyer avec HTMX" type="submit" class="bg-green-500 hover:bg-green-300 hover:text-black text-white" %}
+    </form>
+
+    <form id="simple-form">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+      <button
+        type="submit"
+        class="bg-green-500 text-white"
+        hx-post="{% url 'update-user' 1 'mangue' %}"
+        hx-target="#result"
+        hx-swap="innerHTML"
+        hx-confirm="Are you okay ?"
+      >
+        Dyn URL Params
+      </button>
+
+      {%button label="Dyn url params" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="2, tomate" attrs='hx-confirm="Are you okay ?" hx-target="#result" hx-swap="innerHTML"'%}
+    </form>
+
+    {% button%} {% button label="Dyn url params" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="2, tomate" attrs='hx-confirm="Are you okay ?" hx-target="#result" hx-swap="innerHTML"' %}
+
+    <div id="result"></div>
+
+    {% button label="Dyn url params 4" type="submit" class="bg-pink-500 hover:bg-pink-300 text-white" url_name="update-user" url_params="4, tomate" attrs="hx-confirm='Are you okay ?' hx-target='#result' hx-swap='innerHTML'" %} {% button label="Envoyer" type="submit" class="extra bg-blue-500 text-white px-4 py-2 rounded" attrs='id="submit-button!" title="Cliquez pour envoyer" data-custom="valeur" style="font-weight:bold;"' %} {%button attrs='onclick="alert(\'Bouton cliqué!\')"'%}
+
+    {% button label="Envoyer moi" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="4, tomate" %}
+
+    {% button
+    label="Envoyer mul"
+    type="submit"
+    class="bg-green-500 text-white"
+    url_name="update-user"
+    url_params="4, tomate"
+    hx-target="#result"
+    hx-swap="innerHTML"
+    hx-confirm="Êtes-vous sûr ?"
+%}
+
+
+    <!-- 🔥 Déplacer le script ici -->
+    <script>
+      console.log("Script chargé !"); // Vérification
+
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM prêt !"); // Vérification
+
+        let form = document.getElementById("simple-form");
+        console.log("Form récupéré :", form); // Vérification
+
+        if (!form) {
+          console.error("❌ Erreur : le formulaire n'a pas été trouvé !");
+          return;
+        }
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // Empêche le rechargement de la page
+          console.log("✅ Le formulaire a été soumis !"); // Vérification
+
+          let formData = new FormData(this);
+          let username = formData.get("username");
+
+          if (!username.trim()) {
+            alert("❌ Veuillez entrer un nom !");
+            console.log("⚠️ Nom vide, soumission annulée.");
+            return;
+          }
+
+          console.log("Nom saisi :", username); // Vérifier si la valeur est bien récupérée
+
+          // Simulation d'un backend avec un dictionnaire JS
+          let fakeBackend = {
+            message: `Formulaire soumis avec succès par ${username} !`,
+          };
+
+          console.log("Réponse du fake backend :", fakeBackend); // Vérifier la structure des données
+
+          // Affichage du message dans la div #result
+          document.getElementById(
+            "result"
+          ).innerHTML = `<p>${fakeBackend.message}</p>`;
+        });
+      });
+    </script>
+  </body>
+</html>
+<!-- ? fonctionne -->
+
+
+{% load static tailwind_tags %}
+{% load nexui_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mes composants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+    {% tailwind_css %}
+</head>
+
+<body>
+    <h1 class="text-red-500">Mes composants</h1>
+
+    {% button label="Disabled" disabled="true" %}
+    {% button label="Télécharger" class="bg-green-500" icon="⬇️" icon_position="left" icon_size="lg" %}
+    {% button label="Supprimer" class="bg-red-500" icon="🗑" icon_position="right" %}
+    {% button label="Supprimer" class="bg-red-500" icon="😂" icon_position="right" %}
+    {% button label="Éditer" icon="fa-solid fa-pen" icon_type="fa" %}
+
+    {% button label="Facebook" icon="fa-brands fa-facebook" icon_color="#FFFFFFFF" icon_type="fa" %}
+    {% button label="Facebook" icon="fa-brands fa-facebook-f" icon_color="#FFFFFFFF" icon_type="fa" %}
+
+    {% button label="Étoile" icon="9733" icon_type="unicode" %}
+    {% button label="At Symbol" icon="&#64" icon_type="unicode" %}
+    {# Dans votre template HTML #}
+    {% button label="Favori" icon="fa-solid fa-star" icon_type="fa" icon_color="#FFD43B" class="bg-blue-500" %}
+    {% button label="Email" icon="&#64;" icon_type="unicode" class="bg-yellow-500" %}
+    {% button label="Phone" icon="128241" icon_type="unicode" class="bg-green-500" %}
+    {% button label="Phone" icon="9743" icon_type="unicode" class="bg-green-500" %}
+    {% button label="Envoyer" icon="fa-solid fa-paper-plane" icon_type="fa" %}
+
+    <!-- Bouton avec attributs HTMX -->
+    {% button label="Load More" class="bg-purple-500" htmx_get="/load-more" htmx_trigger="click" htmx_target="#content" %}
+    {% button label="Update" class="bg-orange-500" htmx_put="/update" htmx_trigger="click" htmx_target="#content" %}
+    {% button label="Delete" class="bg-red-500" htmx_delete="/delete" htmx_trigger="click" htmx_target="#content" %}
+</body>
+
+</html>

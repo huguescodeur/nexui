@@ -1,0 +1,80 @@
+<button class="px-4 py-2 rounded flex items-center {{ class }}" type="{{ type }}" {% if disabled %}disabled{% endif %}>
+  {% if icon %}
+  {% if icon_position == "left" %}
+  <span class="mr-2 text-{{ icon_size }}">
+    {% if icon_type == "fa" %}
+    <i class="{{ icon }}" {% if icon_color %}style="color: {{ icon_color }};" {% endif %}></i>
+    {% elif icon_type == "unicode" %}
+    {% if "&#" in icon %}
+    {{ icon|safe }}
+    {% else %}
+    &#{{ icon }};
+    {% endif %}
+    {% else %}
+    {{ icon }}
+    {% endif %}
+  </span>
+  {% endif %}
+  {% endif %}
+
+  {{ label }}
+
+  {% if icon %}
+  {% if icon_position == "right" %}
+  <span class="ml-2 text-{{ icon_size }}">
+    {% if icon_type == "fa" %}
+    <i class="{{ icon }}" {% if icon_color %}style="color: {{ icon_color }};" {% endif %}></i>
+    {% elif icon_type == "unicode" %}
+    {% if "&#" in icon %}
+    {{ icon|safe }}
+    {% else %}
+    &#{{ icon }};
+    {% endif %}
+    {% else %}
+    {{ icon }}
+    {% endif %}
+  </span>
+  {% endif %}
+  {% endif %}
+</button>
+
+<button class="px-4 py-2 rounded flex items-center {{ class }}" type="{{ type }}" {% if disabled %}disabled{% endif %}
+  {{ attributes }}>
+  {% if icon %}
+  {% if icon_position == "left" %}
+  <span class="mr-2 text-{{ icon_size }}">
+    {% if icon_type == "fa" %}
+    <i class="{{ icon }}" {% if icon_color %}style="color: {{ icon_color }};" {% endif %}></i>
+    {% elif icon_type == "unicode" %}
+    {% if "&#" in icon %}
+    {{ icon|safe }}
+    {% else %}
+    &#{{ icon }};
+    {% endif %}
+    {% else %}
+    {{ icon }}
+    {% endif %}
+  </span>
+  {% endif %}
+  {% endif %}
+
+  {{ label }}
+
+  {% if icon %}
+  {% if icon_position == "right" %}
+  <span class="ml-2 text-{{ icon_size }}">
+    {% if icon_type == "fa" %}
+    <i class="{{ icon }}" {% if icon_color %}style="color: {{ icon_color }};" {% endif %}></i>
+    {% elif icon_type == "unicode" %}
+    {% if "&#" in icon %}
+    {{ icon|safe }}
+    {% else %}
+    &#{{ icon }};
+    {% endif %}
+    {% else %}
+    {{ icon }}
+    {% endif %}
+  </span>
+  {% endif %}
+  {% endif %}
+</button>
