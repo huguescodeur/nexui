@@ -1,0 +1,59 @@
+{% load static tailwind_tags %}
+{% load nexui_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Formulaire HTMX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+    {% tailwind_css %}
+</head>
+
+<body>
+<form id="simple-form">
+    <input type="text" name="username" placeholder="Votre nom" required>
+    {% button label="Envoyer" type="submit" class="bg-green-500 text-white" %}
+</form>
+
+<div id="result"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("simple-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Empêche le rechargement de la page
+
+        let formData = new FormData(this);
+        let username = formData.get("username");
+
+        if (!username.trim()) {
+            alert("Veuillez entrer un nom !");
+            return;
+        }
+
+        console.log("Nom saisi :", username); // Vérifier si la valeur est bien récupérée
+
+        // Simulation d'un backend avec un dictionnaire JS
+        let fakeBackend = {
+            message: `Formulaire soumis avec succès par ${username} !`
+        };
+
+        console.log("Réponse du fake backend :", fakeBackend); // Vérifier la structure des données
+
+        // Affichage du message dans la div #result
+        document.getElementById("result").innerHTML = `<p>${fakeBackend.message}</p>`;
+    });
+});
+</script>
+
+
+</body>
+
+</html>

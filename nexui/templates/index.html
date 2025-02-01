@@ -1,0 +1,90 @@
+{% load static tailwind_tags %}
+{% load nexui_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire HTMX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+  {% tailwind_css %}
+</head>
+
+<body>
+  <div class="mx-2 my-2">
+    <form id="simple-form">
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="Envoyer" type="submit" class="bg-yellow-500 text-black"%}
+    </form>
+  </div>
+
+  <div class="mx-2 my-2">
+    <form id="simple-form" hx-post="{% url 'submit-form' %}" hx-target="#result" hx-swap="innerHTML">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="Envoyer avec HTMX classique" type="submit" class="bg-green-500 hover:bg-green-300 hover:text-black text-white" %}
+    </form>
+  </div>
+
+  <div class="mx-2 my-2">
+    <form id="simple-form" hx-post="{% url 'submit-form' %}" hx-target="#result" hx-swap="innerHTML">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="HTMX intégrer" type="submit" class="bg-green-500 hover:bg-green-300 hover:text-black text-white" %}
+    </form>
+  </div>
+
+  <div class="mx-2 my-2">
+    <form id="simple-form">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+
+      {%button label="Dynamique url params" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="2, tomate" attrs='hx-confirm="Are you okay ?" hx-target="#result" hx-swap="innerHTML"'%}
+    </form>
+  </div>
+
+  <div id="result"></div>
+
+
+  <div class="mx-2 my-2">
+    {% button%}
+    {%button class='text-yellow-300'%}
+    {% button label="Dyn url params" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="2, tomate" attrs='hx-confirm="Are you okay ?" hx-target="#result" hx-swap="innerHTML"' %}
+  
+    {% button label="Dyn url params 4" type="submit" class="bg-pink-500 hover:bg-pink-300 text-white" url_name="update-user" url_params="4, tomate" attrs="hx-confirm='Are you okay ?' hx-target='#result' hx-swap='innerHTML'" %}
+    {% button label="Envoyer" type="submit" class="extra bg-blue-500 text-white px-4 py-2 rounded" attrs='id="submit-button!" title="Cliquez pour envoyer" data-custom="valeur" style="font-weight:bold;"' %}
+    {%button label='alerte' attrs='onclick="alert(\'Bouton cliqué!\')"'%}
+  
+    {% button label="Envoyer moi" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="4, tomate" %}
+  
+    {% button label="Disabled" disabled="true" %}
+    {% button label="Télécharger" class="bg-green-500" icon="⬇️" icon_position="left" icon_size="lg" %}
+    {% button label="Supprimer" class="bg-red-500" icon="🗑" icon_position="right" %}
+    {% button label="Supprimer" class="bg-red-500" icon="😂" icon_position="right" %}
+  </div>
+
+  <div class="mx-2 my-2">
+    {% button label="Éditer" icon="fa-solid fa-pen" icon_type="fa" %}
+    {% button label="Facebook" icon="fa-brands fa-facebook" icon_color="#FFFFFFFF" icon_type="fa" %}
+    {% button label="Facebook" icon="fa-brands fa-facebook-f" icon_color="#FFFFFFFF" icon_type="fa" %}
+
+    {% button label="Étoile" icon="9733" icon_type="unicode" %}
+    {% button label="At Symbol" icon="&#64" icon_type="unicode" %}
+    {# Dans votre template HTML #}
+    {% button label="Favori" icon="fa-solid fa-star" icon_type="fa" icon_color="#FFD43B" icon_position='right' class="bg-blue-500" %}
+    {% button label="Email" icon="&#64;" icon_type="unicode" icon_position='right' class="bg-yellow-500" %}
+    {% button label="Phone" icon="128241" icon_type="unicode" icon_position='right' class="bg-green-500" %}
+    {% button label="Phone" icon="9743" icon_type="unicode" icon_position='right' class="bg-green-500" %}
+    {% button label="Envoyer" icon="fa-solid fa-paper-plane" icon_type="fa" icon_position='right' class='bg-pink-500 text-green-600' %}
+
+  </div>
+</body>
+
+</html>
