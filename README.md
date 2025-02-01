@@ -146,7 +146,7 @@ Nous ne pouvons pas accepter de contributions directes pour le moment, mais **vo
 ## 🔗 Liens utiles
 
 - [Dépôt GitHub](https://github.com/huguescodeur/nexui) 🖥️
-- [Signaler un bug]([Signaler un bug](https://github.com/huguescodeur/nexui/issues)) 🐞
+- [Signaler un bug](https://github.com/huguescodeur/nexui/issues)) 🐞
 - [Django-HTMX](https://django-htmx.readthedocs.io/en/latest/installation.html) ⚡
 - [Django-Tailwind](https://django-tailwind.readthedocs.io/en/latest/installation.html) 🎨
 - [HTMX](https://htmx.org/) ⚡
