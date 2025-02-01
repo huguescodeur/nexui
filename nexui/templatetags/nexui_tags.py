@@ -9,7 +9,7 @@ def button(**kwargs):
     context = {
         'label': kwargs.get('label', 'Button'),
         'type': kwargs.get('type', 'button'),
-        'class': kwargs.get('class', 'bg-blue-500 text-white hover:bg-blue-600'),
+        'class': kwargs.get('class'),
         'icon': kwargs.get('icon'),
         'icon_type': kwargs.get('icon_type', 'emoji'),
         'icon_position': kwargs.get('icon_position', 'left'),
