@@ -22,7 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', views.index, name='index'),
-    path('some-url/', views.htmx_view, name='htmx_view'),
     path('submit-form/', views.submit_form, name='submit-form'),
     path('update-user/<int:id>/<str:fruit>/', views.update_user, name='update-user'),
 

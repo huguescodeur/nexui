@@ -4,6 +4,10 @@ from django.shortcuts import render
 from django.urls import reverse
 
 
+
+def index(request):
+    return render(request, 'index.html')
+
 def submit_form(request):
     username = request.POST.get('username')
     if username:
@@ -21,13 +25,6 @@ def update_user(request, id,fruit):
     return JsonResponse({'message': message})
 
 
-def index(request):
-    return render(request, 'index.html')
-
-# Vue Django pour l'URL htmx
-
-def htmx_view(request):
-    return HttpResponse('<p>Réponse de HTMX</p>', content_type='text/html')
 
 
 
