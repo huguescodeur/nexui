@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a44c756-9365-4579-8255-c56c16c12929" name="Changes" comment="&quot;Version alpha component Button utilisable">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nexui/templates/components/button.html" beforeDir="false" afterPath="$PROJECT_DIR$/nexui/templates/components/button.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nexui/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/nexui/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nexui/templatetags/nexui_tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/nexui/templatetags/nexui_tags.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nexui/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nexui/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nexui/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/nexui/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/static/css/dist/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/theme/static/css/dist/styles.css" afterDir="false" />
-    </list>
+    <list default="true" id="5a44c756-9365-4579-8255-c56c16c12929" name="Changes" comment="&quot;Version alpha component Button utilisable" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
