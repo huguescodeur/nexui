@@ -62,7 +62,7 @@ Le composant button permet de créer des boutons personnalisables avec des icôn
 #### **Options disponibles :**
 - `label` : Texte du bouton
 - `type` : Type du bouton (`button`, `submit`, `reset`)
-- `class` : Classes CSS personnalisées
+- `button_class` : Classes CSS personnalisées
 - `icon` : Icône (supporte `Emoji` `Font Awesome` et `Unicode`)
 - `icon_type` : Type d'icône (`emoji`, `fa`, `unicode`)
 - `icon_position` : Position de l'icône (`left`, `right`)
@@ -82,22 +82,22 @@ Le composant button permet de créer des boutons personnalisables avec des icôn
 
 #### 2️⃣ Bouton simple personnalisé
 ```django
-{% button label="Envoyer" type="submit" class="bg-yellow-500 text-black" %}
+{% button label="Envoyer" type="submit" button_class="bg-yellow-500 text-black" %}
 ```
 
 #### 3️⃣ Bouton avec HTMX
 ```django
-{% button label="Envoyer avec HTMX" type="submit" class="bg-green-500" attrs="hx-post='/submit' hx-target='#result' hx-swap='innerHTML'" %}
+{% button label="Envoyer avec HTMX" type="submit" button_class="bg-green-500" attrs="hx-post='/submit' hx-target='#result' hx-swap='innerHTML'" %}
 ```
 
 #### 4️⃣ Bouton avec URL dynamique
 ```django
-{% button label="Dynamique URL Params" type="submit" class="bg-blue-500 text-white" url_name="update-user" url_params="2, tomate" attrs="hx-confirm='Êtes-vous sûr ?' hx-target='#result' hx-swap='innerHTML'" %}
+{% button label="Dynamique URL Params" type="submit" button_class="bg-blue-500 text-white" url_name="update-user" url_params="2, tomate" attrs="hx-confirm='Êtes-vous sûr ?' hx-target='#result' hx-swap='innerHTML'" %}
 ```
 
 #### 5️⃣ Bouton avec émojis
 ```django
-{% button label="Télécharger" class="bg-green-500" icon="⬇️" icon_position="left" icon_size="lg" %}
+{% button label="Télécharger" button_class="bg-green-500" icon="⬇️" icon_position="left" icon_size="lg" %}
 ```
 
 ### 📝 Composant Input
@@ -196,3 +196,5 @@ Nous ne pouvons pas accepter de contributions directes pour le moment, mais **vo
 ## ⚖️ Licence
 
 Ce projet est sous licence **MIT**. Voir le fichier LICENSE pour plus de détails.
+
+![PyPI - Downloads](https://img.shields.io/pypi/dm/nexui)
