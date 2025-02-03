@@ -130,6 +130,18 @@ Le composant input permet de créer des champs de saisie personnalisables avec l
 ### **Exemples d'utilisation du Input :**
 
 #### 1️⃣ Input simple avec label et icône
+
+##### Input simple
+```django
+{% input_field %}
+```
+
+##### Input simple avec label
+```django
+{% input_field name="email" label="Email" %}
+```
+
+##### Input simple avec label, icône et personnalisation
 ```django
 {% input_field name="email" label="Email" icon="fas fa-envelope" icon_type="fa" icon_position="left" placeholder="Email" %}
 ```
