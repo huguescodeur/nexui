@@ -118,7 +118,7 @@ The input component allows you to create customizable input fields with labels, 
 - `disabled`: Disables the field (`true`/`false`)
 - `readonly`: Read-only field (`true`/`false`)
 - `icon`: Icon (supports `Emoji`, `Font Awesome`, and `Unicode`)
-- `icon_type`: Icon type (`fa`, `emoji`)
+- `icon_type`: Icon type (`emoji`, `fa`, `unicode`)
 - `icon_position`: Icon position (`left`, `right`)
 - `icon_size`: Icon size
 - `icon_color`: Icon color
