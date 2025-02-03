@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nexui"
-version = "0.1.4"
+version = "0.1.7"
 description = "Bibliothèque de composants UI modernes avec support HTMX optionnel"
 authors = [
     {name = "Hugues Codeur", email = "huguescodeur@gmail.com"}
@@ -34,3 +34,7 @@ htmx = [
 [tool.setuptools]
 packages = ["nexui"]
 include-package-data = true
+
+[project.urls]
+Homepage = "https://github.com/huguescodeur/nexui"
+Issues = "https://github.com/huguescodeur/nexui/issues"

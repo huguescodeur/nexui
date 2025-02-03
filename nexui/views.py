@@ -8,6 +8,18 @@ from django.urls import reverse
 def index(request):
     return render(request, 'index.html')
 
+def search_suggestions(request):
+    query = request.GET.get('query', '')
+    suggestions = []
+
+    # Simuler des suggestions basées sur la saisie de l'utilisateur
+    if query:
+        suggestions = [
+            f'Suggestion {i}' for i in range(1, 6) if query.lower() in f'suggestion {i}'.lower()
+        ]
+
+    return JsonResponse({'suggestions': suggestions})
+
 def submit_form(request):
     username = request.POST.get('username')
     if username:

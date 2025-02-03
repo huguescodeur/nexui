@@ -1,0 +1,56 @@
+<div class="{{ container_class }}">
+    {% if label %}
+        <label for="{{ id }}" class="{{ label_class }}">
+            {{ label }}
+        </label>
+    {% endif %}
+    
+    <div class="{{ wrapper_class }} inline-block">
+        <div class="relative">
+            {% if icon and icon_position == "left" %}
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-{{ icon_size }}">
+                    {% if icon_type == "fa" %}
+                        <i class="{{ icon }}" {% if icon_color %}style="color: {{ icon_color }};"{% endif %}></i>
+                    {% elif icon_type == "unicode" %}
+                        {% if "&#" in icon %}
+                            {{ icon|safe }}
+                        {% else %}
+                            &#{{ icon }};
+                        {% endif %}
+                    {% else %}
+                        {{ icon }}
+                    {% endif %}
+                </span>
+            {% endif %}
+            
+            <input 
+                type="{{ type }}" 
+                name="{{ name }}" 
+                id="{{ id }}" 
+                value="{{ value }}" 
+                class="w-full rounded-md border border-gray-300 {% if icon %}{% if icon_position == 'left' %}pl-10{% endif %}{% if icon_position == 'right' %}pr-10{% endif %}{% endif %} {{ input_class }}"
+                placeholder="{{ placeholder }}" 
+                {% if required %}required{% endif %}
+                {% if disabled %}disabled{% endif %}
+                {% if readonly %}readonly{% endif %}
+                {{ input_attributes|safe }}
+            />
+
+            {% if icon and icon_position == "right" %}
+                <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-{{ icon_size }}">
+                    {% if icon_type == "fa" %}
+                        <i class="{{ icon }}" {% if icon_color %}style="color: {{ icon_color }};"{% endif %}></i>
+                    {% elif icon_type == "unicode" %}
+                        {% if "&#" in icon %}
+                            {{ icon|safe }}
+                        {% else %}
+                            &#{{ icon }};
+                        {% endif %}
+                    {% else %}
+                        {{ icon }}
+                    {% endif %}
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</div>
