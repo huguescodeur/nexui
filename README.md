@@ -1,28 +1,28 @@
 # 🚀 NexUI
 
-NexUI est une bibliothèque de composants UI pour Django, optimisée pour HTMX et basée sur Tailwind CSS. Elle permet d'ajouter facilement des éléments interactifs à vos applications Django tout en bénéficiant des avantages d'une intégration fluide avec HTMX pour la gestion des requêtes AJAX.
+NexUI is a UI component library for Django, optimized for HTMX and based on Tailwind CSS. It allows you to easily add interactive elements to your Django applications while benefiting from seamless integration with HTMX for AJAX request handling.
 
 ---
 
 ## 📌 Installation
 
-### Installation de base
+### Basic Installation
 ```bash
 pip install nexui
 ```
 
-### Installation avec support HTMX
-Si vous prévoyez d'utiliser HTMX avec vos composants :
+### Installation with HTMX support
+If you plan to use HTMX with your components:
 ```bash
 pip install nexui[htmx]
 ```
 
-Ou installez HTMX séparément plus tard :
+Or install HTMX separately later:
 ```bash
 pip install django-htmx
 ```
 
-Ajoutez nexui à la liste des applications installées dans settings.py :
+Add nexui to the list of installed apps in `settings.py`:
 ```python
 INSTALLED_APPS = [
     ...
@@ -32,19 +32,18 @@ INSTALLED_APPS = [
 
 ---
 
-## 🎨 Fonctionnalités
+## 🎨 Features
 
-✅ Composants UI réutilisables pour Django  
-🔥 Intégration fluide avec HTMX  
-🎨 Basé sur Tailwind CSS pour un design moderne  
-📦 Facile à installer et à utiliser  
+✅ Reusable UI components for Django  
+🔥 Smooth integration with HTMX  
+🎨 Based on Tailwind CSS for a modern design  
+📦 Easy to install and use  
 
 ---
 
-## 🚀 Utilisation
+## 🚀 Usage
 
-### Charger les tags NexUI dans vos templates Django
-
+### Load NexUI tags in your Django templates
 ```django
 {% load nexui_tags %}
 ```
@@ -53,139 +52,139 @@ INSTALLED_APPS = [
 
 ## 📖 Documentation
 
-Consultez la documentation complète ici : [Documentation officielle](https://github.com/huguescodeur/nexui)
+Check the full documentation here: [Official Documentation](https://github.com/huguescodeur/nexui)
 
-### 🔘 Composant Button
+### 🔘 Button Component
 
-Le composant button permet de créer des boutons personnalisables avec des icônes et des interactions HTMX.
+The button component allows you to create customizable buttons with icons and HTMX interactions.
 
-#### **Options disponibles :**
-- `label` : Texte du bouton
-- `type` : Type du bouton (`button`, `submit`, `reset`)
-- `button_class` : Classes CSS personnalisées
-- `icon` : Icône (supporte `Emoji` `Font Awesome` et `Unicode`)
-- `icon_type` : Type d'icône (`emoji`, `fa`, `unicode`)
-- `icon_position` : Position de l'icône (`left`, `right`)
-- `icon_size` : Taille de l'icône
-- `icon_color` : Couleur de l'icône
-- `disabled` : Désactive le bouton (`true`)
-- `url_name` : Nom de l'URL Django
-- `url_params` : Paramètres dynamiques pour l'URL Django
-- `attrs` : Attributs `HTML` et `HTMX` supplémentaires (`_hx-_*`, `id`, `style`, `data-*` etc.)
+#### **Available Options:**
+- `label`: Button text
+- `type`: Button type (`button`, `submit`, `reset`)
+- `button_class`: Custom CSS classes
+- `icon`: Icon (supports `Emoji`, `Font Awesome`, and `Unicode`)
+- `icon_type`: Icon type (`emoji`, `fa`, `unicode`)
+- `icon_position`: Icon position (`left`, `right`)
+- `icon_size`: Icon size
+- `icon_color`: Icon color
+- `disabled`: Disables the button (`true`)
+- `url_name`: Django URL name
+- `url_params`: Dynamic parameters for the Django URL
+- `attrs`: Additional `HTML` and `HTMX` attributes (`_hx-*`, `id`, `style`, `data-*`, etc.)
 
-### **Exemples d'utilisation du Button :**
+### **Button Usage Examples:**
 
-#### 1️⃣ Bouton simple
+#### 1️⃣ Simple Button
 ```django
-{% button label="Envoyer" %}
+{% button label="Send" %}
 ```
 
-#### 2️⃣ Bouton simple personnalisé
+#### 2️⃣ Customized Simple Button
 ```django
-{% button label="Envoyer" type="submit" button_class="bg-yellow-500 text-black" %}
+{% button label="Send" type="submit" button_class="bg-yellow-500 text-black" %}
 ```
 
-#### 3️⃣ Bouton avec HTMX
+#### 3️⃣ Button with HTMX
 ```django
-{% button label="Envoyer avec HTMX" type="submit" button_class="bg-green-500" attrs="hx-post='/submit' hx-target='#result' hx-swap='innerHTML'" %}
+{% button label="Send with HTMX" type="submit" button_class="bg-green-500" attrs="hx-post='/submit' hx-target='#result' hx-swap='innerHTML'" %}
 ```
 
-#### 4️⃣ Bouton avec URL dynamique
+#### 4️⃣ Button with Dynamic URL
 ```django
-{% button label="Dynamique URL Params" type="submit" button_class="bg-blue-500 text-white" url_name="update-user" url_params="2, tomate" attrs="hx-confirm='Êtes-vous sûr ?' hx-target='#result' hx-swap='innerHTML'" %}
+{% button label="Dynamic URL Params" type="submit" button_class="bg-blue-500 text-white" url_name="update-user" url_params="2, tomato" attrs="hx-confirm='Are you sure?' hx-target='#result' hx-swap='innerHTML'" %}
 ```
 
-#### 5️⃣ Bouton avec émojis
+#### 5️⃣ Button with Emojis
 ```django
-{% button label="Télécharger" button_class="bg-green-500" icon="⬇️" icon_position="left" icon_size="lg" %}
+{% button label="Download" button_class="bg-green-500" icon="⬇️" icon_position="left" icon_size="lg" %}
 ```
 
-### 📝 Composant Input
+### 📝 Input Component
 
-Le composant input permet de créer des champs de saisie personnalisables avec labels, icônes et intégration HTMX.
+The input component allows you to create customizable input fields with labels, icons, and HTMX integration.
 
-#### **Options disponibles :**
-- `type` : Type de l'input (`text`, `password`, `email`, etc.)
-- `name` : Nom du champ
-- `id` : ID du champ (par défaut égal au `name`)
-- `value` : Valeur par défaut
-- `placeholder` : Texte d'aide
-- `container_class` : Classes CSS pour le conteneur principal
-- `wrapper_class` : Classes CSS pour le wrapper de l'input
-- `label_class` : Classes CSS pour le label
-- `input_class` : Classes CSS pour l'input
-- `label` : Texte du label
-- `required` : Champ obligatoire (`true`/`false`)
-- `disabled` : Désactive le champ (`true`/`false`)
-- `readonly` : Lecture seule (`true`/`false`)
-- `icon` : Icône (supporte `Emoji`, `Font Awesome` et `Unicode`)
-- `icon_type` : Type d'icône (`fa`, `emoji`)
-- `icon_position` : Position de l'icône (`left`, `right`)
-- `icon_size` : Taille de l'icône
-- `icon_color` : Couleur de l'icône
-- `url_name` : Nom de l'URL Django pour `HTMX`
-- `method` : Méthode HTTP pour HTMX (`post` par défaut)
-- `attrs` : Attributs `HTML` et `HTMX` supplémentaires
+#### **Available Options:**
+- `type`: Input type (`text`, `password`, `email`, etc.)
+- `name`: Field name
+- `id`: Field ID (default is the same as `name`)
+- `value`: Default value
+- `placeholder`: Placeholder text
+- `container_class`: CSS classes for the main container
+- `wrapper_class`: CSS classes for the input wrapper
+- `label_class`: CSS classes for the label
+- `input_class`: CSS classes for the input
+- `label`: Label text
+- `required`: Required field (`true`/`false`)
+- `disabled`: Disables the field (`true`/`false`)
+- `readonly`: Read-only field (`true`/`false`)
+- `icon`: Icon (supports `Emoji`, `Font Awesome`, and `Unicode`)
+- `icon_type`: Icon type (`fa`, `emoji`)
+- `icon_position`: Icon position (`left`, `right`)
+- `icon_size`: Icon size
+- `icon_color`: Icon color
+- `url_name`: Django URL name for `HTMX`
+- `method`: HTTP method for HTMX (`post` by default)
+- `attrs`: Additional `HTML` and `HTMX` attributes
 
-### **Exemples d'utilisation du Input :**
+### **Input Usage Examples:**
 
-#### 1️⃣ Input simple avec label et icône
+#### 1️⃣ Simple Input with Label and Icon
 
-##### Input simple
+##### Simple Input
 ```django
 {% input_field %}
 ```
 
-##### Input simple avec label
+##### Simple Input with Label
 ```django
 {% input_field name="email" label="Email" %}
 ```
 
-##### Input simple avec label, icône et personnalisation
+##### Simple Input with Label, Icon, and Customization
 ```django
 {% input_field name="email" label="Email" icon="fas fa-envelope" icon_type="fa" icon_position="left" placeholder="Email" %}
 ```
 
-#### 2️⃣ Input password avec emoji
+#### 2️⃣ Password Input with Emoji
 ```django
 {% input_field type="password" icon="🔒" %}
 ```
 
-#### 3️⃣ Input avec HTMX et confirmation
+#### 3️⃣ Input with HTMX and Confirmation
 ```django
 {% input_field name="email" label="Email" icon="fas fa-envelope" icon_type="fa" url_name="submit-form" attrs='hx-confirm="Are you okay?"' %}
 ```
 
-#### 4️⃣ Input avec recherche en temps réel
+#### 4️⃣ Input with Real-Time Search
 ```django
-{% input_field name="search" label="Recherche" icon="fas fa-search" icon_type="fa" icon_position="left" url_name="search_suggestions" attrs='hx-trigger="keyup changed delay:500ms" hx-target="#suggestions"' %}
+{% input_field name="search" label="Search" icon="fas fa-search" icon_type="fa" icon_position="left" url_name="search_suggestions" attrs='hx-trigger="keyup changed delay:500ms" hx-target="#suggestions"' %}
 ```
 
-#### 5️⃣ Input personnalisé avec style
+#### 5️⃣ Custom Styled Input
 ```django
 {% input_field container_class="py-2 flex items-center" name="email" label="Email" label_class="ml-2 text-gray-700 font-bold" input_class="w-44 pl-10 pr-3 py-2 rounded-md border border-gray-300" icon="fas fa-envelope" icon_type="fa" icon_position="left" %}
 ```
 
 ---
 
-## 💡 Contribuer
+## 💡 Contribute
 
-Actuellement, le projet est en phase de test initial. Nous encourageons les utilisateurs intéressés à donner leur avis sur la bibliothèque.
+The project is currently in its early testing phase. We encourage interested users to provide feedback on the library.
 
-Si vous souhaitez participer à l'évolution de **NexUI** ou si vous avez des suggestions :
+If you want to contribute to **NexUI** or have suggestions:
 
-1. **`Forkez` le projet** 📌
-2. **`Testez` les composants et apportez vos retours** 🛠️
-3. **`Créez` une issue** pour partager vos suggestions ou problèmes ✅
+1. **`Fork` the project** 📌
+2. **`Test` the components and provide feedback** 🛠️
+3. **`Create` an issue** to share your suggestions or report problems ✅
 
-Nous ne pouvons pas accepter de contributions directes pour le moment, mais **vos retours sont essentiels** pour l'évolution de NexUI.
+We cannot accept direct contributions at the moment, but **your feedback is essential** for NexUI's evolution.
 
 ---
 
-## 🔗 Liens utiles
+## 🔗 Useful Links
 
-- [Dépôt GitHub](https://github.com/huguescodeur/nexui) 🖥️
-- [Signaler un bug](https://github.com/huguescodeur/nexui/issues) 🐞
+- [GitHub Repository](https://github.com/huguescodeur/nexui) 🖥️
+- [Report a Bug](https://github.com/huguescodeur/nexui/issues) 🐞
 - [Django-HTMX](https://django-htmx.readthedocs.io/en/latest/installation.html) ⚡
 - [Django-Tailwind](https://django-tailwind.readthedocs.io/en/latest/installation.html) 🎨
 - [HTMX](https://htmx.org/) ⚡
@@ -193,8 +192,9 @@ Nous ne pouvons pas accepter de contributions directes pour le moment, mais **vo
 
 ---
 
-## ⚖️ Licence
+## ⚖️ License
 
-Ce projet est sous licence **MIT**. Voir le fichier LICENSE pour plus de détails.
+This project is licensed under the **MIT** license. See the LICENSE file for more details.
 
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/nexui)
+
