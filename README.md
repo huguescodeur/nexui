@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
 ## 📖 Documentation
 
-Check the full documentation here: [Official Documentation](https://github.com/huguescodeur/nexui)
+Check the full documentation here: [Official Documentation](https://pypi.org/project/nexui/)
 
 ### 🔘 Button Component
 
@@ -164,6 +164,125 @@ The input component allows you to create customizable input fields with labels, 
 ```django
 {% input_field container_class="py-2 flex items-center" name="email" label="Email" label_class="ml-2 text-gray-700 font-bold" input_class="w-44 pl-10 pr-3 py-2 rounded-md border border-gray-300" icon="fas fa-envelope" icon_type="fa" icon_position="left" %}
 ```
+
+---
+### 🔐 Authentication Components Example
+NexUI provides pre-built authentication components that you can easily integrate into your Django applications. Below are examples of login and registration forms built with NexUI components.
+
+#### 🔐 Register Form Example
+Create a beautiful registration form with social authentication options:
+
+![Alt text](static\js\images\register.png "Register")
+
+```django
+<div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-2">Create an account</h1>
+    <p class="text-gray-600 mb-6">Enter your email below to create your account</p>
+
+    <div class="space-y-4">
+        {# OAuth Buttons #}
+        <div class="flex gap-4 mb-4">
+            {% button label="GitHub" button_class="w-full border border-gray-300 bg-white hover:bg-gray-50" 
+                     icon="fa-brands fa-github fa-lg" icon_type="fa" icon_position="left" %}
+            {% button label="Google" button_class="w-full border border-gray-300 bg-white hover:bg-gray-50" 
+                     icon="fa-brands fa-google fa-lg" icon_type="fa" icon_position="left" %}
+        </div>
+
+        {# Separator #}
+        <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+                <span class="w-full border-t"></span>
+            </div>
+            <div class="relative flex justify-center text-xs uppercase">
+                <span class="bg-white px-2 text-gray-500">OR CONTINUE WITH</span>
+            </div>
+        </div>
+
+        {# Email Field #}
+        {% input_field type="email" name="register_email" label="Email" 
+                      placeholder="nexui@example.com" container_class="mb-4" 
+                      input_class="h-10" icon="fa-solid fa-envelope" 
+                      icon_type="fa" required="true" %}
+
+        {# Password Field #}
+        {% input_field type="password" name="register_password" label="Password" 
+                      container_class="mb-6" input_class="h-10" 
+                      icon="fa-solid fa-lock" icon_type="fa" required="true" %}
+
+        {# Submit Button #}
+        {% button label="Create account" type="submit" 
+                 button_class="w-full bg-gray-900 text-white hover:bg-gray-800" %}
+    </div>
+</div>
+```
+
+#### 🔐 Login Form Example
+Create a matching login form with social authentication:
+
+![Alt text](static\js\images\login.png "Login")
+
+```django
+<div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-2">Login</h1>
+    <p class="text-gray-600 mb-6">Welcome back! Please enter your details</p>
+
+    <div class="space-y-4">
+        {# OAuth Buttons #}
+        <div class="flex gap-4 mb-4">
+            {% button label="GitHub" button_class="w-full border border-gray-300 bg-white hover:bg-gray-50" 
+                     icon="fa-brands fa-github fa-lg" icon_type="fa" icon_position="left" %}
+            {% button label="Google" button_class="w-full border border-gray-300 bg-white hover:bg-gray-50" 
+                     icon="fa-brands fa-google fa-lg" icon_type="fa" icon_position="left" %}
+        </div>
+
+        {# Separator #}
+        <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+                <span class="w-full border-t"></span>
+            </div>
+            <div class="relative flex justify-center text-xs uppercase">
+                <span class="bg-white px-2 text-gray-500">OR CONTINUE WITH</span>
+            </div>
+        </div>
+
+        {# Email Field #}
+        {% input_field type="email" name="login_email" label="Email" 
+                      placeholder="nexui@example.com" container_class="mb-4" 
+                      input_class="h-10" icon="fa-solid fa-envelope" 
+                      icon_type="fa" required="true" %}
+
+        {# Password Field #}
+        {% input_field type="password" name="login_password" label="Password" 
+                      container_class="mb-2" input_class="h-10" 
+                      icon="fa-solid fa-lock" icon_type="fa" required="true" %}
+
+        {# Forgot Password Link #}
+        <div class="flex justify-end mb-6">
+            <a href="#" class="text-sm text-black hover:underline">Forgot password?</a>
+        </div>
+
+        {# Submit Button #}
+        {% button label="Sign in" type="submit" 
+                 button_class="w-full bg-gray-900 text-white hover:bg-gray-800" %}
+    </div>
+</div>
+```
+#### Features
+Both forms include:
+
+- 🔑 Social authentication options (GitHub and Google)
+- 📧 Email and password fields with icons
+- 🎨 Clean, modern design with Tailwind CSS
+- 📱 Responsive layout
+
+#### Customization
+You can customize these forms by:
+
+- `Modifying` the Tailwind CSS classes
+- `Adding` or `removing` social authentication providers
+- `Customizing` the icons using Font Awesome classes
+- Adding `HTMX` attributes for enhanced interactivity
+Adjusting the layout and spacing
 
 ---
 

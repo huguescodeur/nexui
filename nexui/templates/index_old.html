@@ -1,0 +1,224 @@
+{% load static tailwind_tags %}
+{% load nexui_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire HTMX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+  {% tailwind_css %}
+</head>
+
+<body>
+  
+
+  <!-- ? Login -->
+   
+  <form action="" class="border-2 mx-2 py-2">
+    {% input_field container_class="py-2 flex items-center flex-row-reverse justify-end" name="email" label="Email"    icon="fas fa-envelope" icon_type="fa" icon_position="left" placeholder="Email" input_class="bg-red-100 " %}
+    {% input_field type="password" %}
+  </form>
+   
+
+  <div class="mx-2 my-2">
+  {% input_field container_class="py-2 flex flex-row-reverse justify-end items-center" name="email" label="Email" label_class="ml-2 text-gray-700 font-bold" wrapper_class="relative" input_class="w-44 pl-10 pr-3 py-2" icon="fas fa-envelope" icon_type="fa" icon_position="right" url_name="submit-form" attrs='hx-confirm="Are you okay ?"' %}
+  </div>
+
+  <div class="mx-2 my-2">
+    {% input_field container_class=" py-2 flex flex-row-reverse justify-end items-center" name="email" label="Email" label_class="ml-2 text-gray-700 font-bold" wrapper_class="relative" input_class="w-44 pl-10 pr-3 py-2 rounded-md border border-gray-300" icon="fas fa-envelope" icon_type="fa" icon_position="left" url_name="search_suggestions" attrs='hx-trigger="keyup changed delay:500ms" hx-target="#suggestions"' %}
+</div>
+<div id="suggestions" class="mt-2"></div>
+
+<script>
+    document.addEventListener('htmx:configRequest', function(evt) {
+        evt.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+
+
+
+
+<div id="result"></div>
+
+  <div class="mx-2 my-2">
+    <form id="simple-form">
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="Envoyer" type="submit" class="bg-yellow-500 text-black"%}
+    </form>
+  </div>
+
+  <div class="mx-2 my-2">
+    <form id="simple-form" hx-post="{% url 'submit-form' %}" hx-target="#result" hx-swap="innerHTML">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="Envoyer avec HTMX classique" type="submit" class="bg-green-500 hover:bg-green-300 hover:text-black text-white" %}
+    </form>
+  </div>
+
+  <div class="mx-2 my-2">
+    <form id="simple-form" hx-post="{% url 'submit-form' %}" hx-target="#result" hx-swap="innerHTML">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+      {% button label="HTMX intégrer" type="submit" class="bg-green-500 hover:bg-green-300 hover:text-black text-white" %}
+    </form>
+  </div>
+
+  <div class="mx-2 my-2">
+    <form id="simple-form">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Votre nom" required />
+
+      {%button label="Dynamique url params" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="2, tomate" attrs='hx-confirm="Are you okay ?" hx-target="#result" hx-swap="innerHTML"'%}
+    </form>
+  </div>
+
+  <div id="result"></div>
+
+
+  <div class="mx-2 my-2">
+    {% button%}
+    {%button class='text-yellow-300'%}
+    {% button label="Dyn url params" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="2, tomate" attrs='hx-confirm="Are you okay ?" hx-target="#result" hx-swap="innerHTML"' %}
+  
+    {% button label="Dyn url params 4" type="submit" class="bg-pink-500 hover:bg-pink-300 text-white" url_name="update-user" url_params="4, tomate" attrs="hx-confirm='Are you okay ?' hx-target='#result' hx-swap='innerHTML'" %}
+    {% button label="Envoyer" type="submit" class="extra bg-blue-500 text-white px-4 py-2 rounded" attrs='id="submit-button!" title="Cliquez pour envoyer" data-custom="valeur" style="font-weight:bold;"' %}
+    {%button label='alerte' attrs='onclick="alert(\'Bouton cliqué!\')"'%}
+  
+    {% button label="Envoyer moi" type="submit" class="bg-green-500 text-white" url_name="update-user" url_params="4, tomate" %}
+  
+    {% button label="Disabled" disabled="true" %}
+    {% button label="Télécharger" class="bg-green-500" icon="⬇️" icon_position="left" icon_size="lg" %}
+    {% button label="Supprimer" class="bg-red-500" icon="🗑" icon_position="right" %}
+    {% button label="Supprimer" class="bg-red-500" icon="😂" icon_position="right" %}
+  </div>
+
+  <div class="mx-2 my-2">
+    {% button label="Éditer" icon="fa-solid fa-pen" icon_type="fa" %}
+    {% button label="Facebook" icon="fa-brands fa-facebook" icon_color="#FFFFFFFF" icon_type="fa" %}
+    {% button label="Facebook" icon="fa-brands fa-facebook-f" icon_color="#FFFFFFFF" icon_type="fa" %}
+
+    {% button label="Étoile" icon="9733" icon_type="unicode" %}
+    {% button label="At Symbol" icon="&#64" icon_type="unicode" %}
+    {# Dans votre template HTML #}
+    {% button label="Favori" icon="fa-solid fa-star" icon_type="fa" icon_color="#FFD43B" icon_position='right' class="bg-blue-500" %}
+    {% button label="Email" icon="&#64;" icon_type="unicode" icon_position='right' class="bg-yellow-500" %}
+    {% button label="Phone" icon="128241" icon_type="unicode" icon_position='right' class="bg-green-500" %}
+    {% button label="Phone" icon="9743" icon_type="unicode" icon_position='right' class="bg-green-500" %}
+    {% button label="Envoyer" type="submit" icon="fa-solid fa-paper-plane" icon_type="fa" icon_position='right' class='bg-pink-500 text-green-600' attrs='hx-on:click="window.location.href=\'/\'"'%}
+
+  </div>
+</body>
+
+</html>
+
+{% load static tailwind_tags %}
+{% load nexui_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire HTMX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="{% static 'js/htmx.min.js' %}" defer></script>
+
+  {% tailwind_css %}
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="flex gap-6 p-6">
+    <!-- ? Register -->
+    <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold mb-2">Create an account</h1>
+      <p class="text-gray-600 mb-6">Enter your email below to create your account</p>
+
+      <div class="space-y-4">
+          {# Boutons OAuth #}
+          <div class="flex gap-4 mb-4">
+            {% button label="GitHub" button_class="w-full border border-gray-300 bg-white hover:bg-gray-50" icon="fa-brands fa-github fa-lg" icon_type="fa" icon_position="left" %}
+              
+              {% button label="Google" button_class="w-full border border-gray-300 bg-white  hover:bg-gray-50" icon="fa-brands fa-google fa-lg" icon_type="fa" icon_position="left" %}
+          </div>
+
+          {# Séparateur #}
+          <div class="relative my-6">
+              <div class="absolute inset-0 flex items-center">
+                  <span class="w-full border-t"></span>
+              </div>
+              <div class="relative flex justify-center text-xs uppercase">
+                  <span class="bg-white px-2 text-gray-500">OR CONTINUE WITH</span>
+              </div>
+          </div>
+
+          {# Champ Email #}
+          {% input_field type="email" name="register_email" label="Email" placeholder="nexui@example.com" container_class="mb-4" input_class="h-10" required="true" %}
+
+          {# Champ Password #}
+          {% input_field type="password" name="register_password" label="Password" container_class="mb-6" input_class="h-10" required="true" %}
+
+          {# Bouton de création de compte #}
+          {% button label="Create account" type="submit" button_class="w-full bg-black text-white hover:bg-gray-800" %}
+      </div>
+    </div>
+
+    <!-- ? Login -->
+    <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold mb-2">Login</h1>
+      <p class="text-gray-600 mb-6">Welcome back! Please enter your details</p>
+
+      <div class="space-y-4">
+          {# Boutons OAuth #}
+          <div class="flex gap-4 mb-4">
+            {% button label="GitHub" button_class="w-full border border-gray-300 bg-white hover:bg-gray-50" icon="fa-brands fa-github fa-lg" icon_type="fa" icon_position="left" %}
+              
+            {% button label="Google" button_class="w-full border border-gray-300 bg-white hover:bg-gray-50" icon="fa-brands fa-google fa-lg" icon_type="fa" icon_position="left" %}
+          </div>
+
+          {# Séparateur #}
+          <div class="relative my-6">
+              <div class="absolute inset-0 flex items-center">
+                  <span class="w-full border-t"></span>
+              </div>
+              <div class="relative flex justify-center text-xs uppercase">
+                  <span class="bg-white px-2 text-gray-500">OR CONTINUE WITH</span>
+              </div>
+          </div>
+
+          {# Champ Email #}
+          {% input_field type="email" name="login_email" label="Email" placeholder="nexui@example.com" container_class="mb-4" input_class="h-10" required="true" icon="fa-regular fa-envelope" icon_type="fa" %}
+
+          {# Champ Password #}
+          {% input_field type="password" name="login_password" label="Password" container_class="mb-2" input_class="h-10" required="true" icon="fa-solid fa-lock" icon_type="fa" %}
+
+          {# Forgot password link #}
+          <div class="flex justify-end mb-6">
+            <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+          </div>
+
+          {# Bouton de connexion #}
+          {% button label="Sign in" type="submit" button_class="w-full bg-black text-white hover:bg-gray-800" %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('htmx:configRequest', function(evt) {
+        evt.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+  </script>
+</body>
+
+</html>

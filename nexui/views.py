@@ -5,8 +5,13 @@ from django.urls import reverse
 
 
 
+# def index(request):
+#     return render(request, 'index.html')
 def index(request):
-    return render(request, 'index.html')
+    if request.htmx:
+        return render(request, "form.html")  # Seulement le formulaire
+    return render(request, "index.html")
+
 
 def search_suggestions(request):
     query = request.GET.get('query', '')
