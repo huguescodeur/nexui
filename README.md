@@ -219,7 +219,7 @@ Create a beautiful registration form with social authentication options:
 #### 🔐 Login Form Example
 Create a matching login form with social authentication:
 
-![Alt text](https://www.dropbox.com/scl/fi/d5tjmyciv6eb1cy2xcibw/login.png?rlkey=fog7vyyv6hupi3c60uuq685os&st=gk5i7qiz&dl=0 "Login")
+![Login Image](https://dl.dropboxusercontent.com/scl/fi/d5tjmyciv6eb1cy2xcibw/login.png?rlkey=fog7vyyv6hupi3c60uuq685os&e=1&st=gk5i7qiz&dl=0)
 
 ```django
 <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
