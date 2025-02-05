@@ -172,7 +172,8 @@ NexUI provides pre-built authentication components that you can easily integrate
 #### 🔐 Register Form Example
 Create a beautiful registration form with social authentication options:
 
-![Alt text](https://www.dropbox.com/scl/fi/ctzrg5q42qru5ema4jlo6/register.png?rlkey=hb7037n155t5jhw9rv4l87d0u&st=ciukj9lc&dl=0 "Register")
+![Register Image](https://dl.dropboxusercontent.com/scl/fi/ctzrg5q42qru5ema4jlo6/register.png?rlkey=hb7037n155t5jhw9rv4l87d0u&st=bdet46zf&dl=0)
+
 
 ```django
 <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
