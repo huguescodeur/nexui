@@ -172,7 +172,7 @@ NexUI provides pre-built authentication components that you can easily integrate
 #### 🔐 Register Form Example
 Create a beautiful registration form with social authentication options:
 
-![Alt text](https://github.com/huguescodeur/nexui/blob/huguescodeur/static/images/register.png "Register")
+![Alt text](https://www.dropbox.com/scl/fi/ctzrg5q42qru5ema4jlo6/register.png?rlkey=hb7037n155t5jhw9rv4l87d0u&st=ciukj9lc&dl=1 "Register")
 
 ```django
 <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
@@ -219,7 +219,7 @@ Create a beautiful registration form with social authentication options:
 #### 🔐 Login Form Example
 Create a matching login form with social authentication:
 
-![Alt text](https://github.com/huguescodeur/nexui/blob/huguescodeur/static/images/login.png "Login")
+![Alt text](https://www.dropbox.com/scl/fi/d5tjmyciv6eb1cy2xcibw/login.png?rlkey=fog7vyyv6hupi3c60uuq685os&st=gk5i7qiz&dl=1 "Login")
 
 ```django
 <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
