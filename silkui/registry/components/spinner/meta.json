@@ -1,0 +1,1 @@
+{"name": "spinner", "version": "1.1.0", "description": "Indicateur de chargement animé", "files": ["spinner.html"], "alpine": false, "htmx_ready": true, "dependencies": []}

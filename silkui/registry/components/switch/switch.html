@@ -1,0 +1,12 @@
+<label x-data="{ on: {% if checked %}true{% else %}false{% endif %} }" class="inline-flex items-center gap-2 cursor-pointer {{ container_class }}">
+  <input type="checkbox" name="{{ name }}" id="{{ id }}" x-model="on"
+         {% if disabled %}disabled{% endif %}
+         value="{{ value }}"
+         class="sr-only" {{ attrs }}>
+  <span :class="on ? 'bg-primary' : 'bg-muted'"
+        class="relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors {% if disabled %}opacity-50 cursor-not-allowed{% else %}cursor-pointer{% endif %} {{ input_class }}">
+    <span :class="on ? 'translate-x-5' : 'translate-x-0.5'"
+          class="inline-block h-5 w-5 rounded-full bg-white shadow-sm transition-transform"></span>
+  </span>
+  {% if label %}<span class="text-sm font-medium leading-none {% if disabled %}opacity-50{% endif %} {{ label_class }}">{{ label }}</span>{% endif %}
+</label>

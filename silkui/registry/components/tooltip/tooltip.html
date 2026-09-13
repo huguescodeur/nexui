@@ -1,0 +1,17 @@
+<div x-data="{ show: false }" class="relative inline-block {{ class }}">
+  <div @mouseenter="show = true" @mouseleave="show = false" @focus="show = true" @blur="show = false">
+    {{ slot }}
+  </div>
+  <div x-show="show"
+       x-transition:enter="transition ease-out duration-100"
+       x-transition:enter-start="opacity-0 scale-95"
+       x-transition:enter-end="opacity-100 scale-100"
+       x-transition:leave="transition ease-in duration-75"
+       x-transition:leave-start="opacity-100 scale-100"
+       x-transition:leave-end="opacity-0 scale-95"
+       class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 px-3 py-1.5 text-xs font-medium rounded-md bg-primary text-primary-foreground whitespace-nowrap pointer-events-none shadow-md"
+       style="display:none">
+    {{ content }}
+    <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div>
+  </div>
+</div>

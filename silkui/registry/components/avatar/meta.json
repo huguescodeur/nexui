@@ -1,0 +1,1 @@
+{"name": "avatar", "version": "1.1.0", "description": "Avatar utilisateur avec image ou initiales en fallback", "files": ["avatar.html"], "alpine": false, "htmx_ready": true, "dependencies": []}

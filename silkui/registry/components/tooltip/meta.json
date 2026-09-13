@@ -1,0 +1,1 @@
+{"name": "tooltip", "version": "1.1.0", "description": "Info-bulle au survol avec Alpine.js", "files": ["tooltip.html"], "alpine": true, "htmx_ready": true, "dependencies": []}

@@ -444,6 +444,142 @@ register.tag("table_caption", _block("components/table-caption.html", "endtable_
 
 
 # ---------------------------------------------------------------------------
+# Spinner
+#
+#   {% spinner %}
+#   {% spinner size="lg" class="text-primary" %}
+# ---------------------------------------------------------------------------
+@register.simple_tag
+def spinner(**kwargs):
+    size = kwargs.get("size", "md")
+    size_map = {"sm": "h-3 w-3", "md": "h-4 w-4", "lg": "h-8 w-8"}
+    return _render("components/spinner.html", {
+        "size_class": size_map.get(size, size_map["md"]),
+        "class":      kwargs.get("class", ""),
+    })
+
+
+# ---------------------------------------------------------------------------
+# Skeleton
+#
+#   {% skeleton class="h-4 w-full" %}
+#   {% skeleton class="h-10 w-10 rounded-full" %}
+# ---------------------------------------------------------------------------
+@register.simple_tag
+def skeleton(**kwargs):
+    return _render("components/skeleton.html", {
+        "class": kwargs.get("class", ""),
+    })
+
+
+# ---------------------------------------------------------------------------
+# Progress
+#
+#   {% progress value=75 %}
+#   {% progress value=50 class="h-4" %}
+# ---------------------------------------------------------------------------
+@register.simple_tag
+def progress(**kwargs):
+    try:
+        value = max(0, min(100, int(kwargs.get("value", 0))))
+    except (TypeError, ValueError):
+        value = 0
+    return _render("components/progress.html", {
+        "value": value,
+        "max":   kwargs.get("max", 100),
+        "class": kwargs.get("class", ""),
+    })
+
+
+# ---------------------------------------------------------------------------
+# Avatar
+#
+#   {% avatar fallback="AC" %}
+#   {% avatar src="/img/alice.jpg" alt="Alice Martin" %}
+#   {% avatar fallback="AB" size="lg" %}
+# ---------------------------------------------------------------------------
+@register.simple_tag
+def avatar(**kwargs):
+    size = kwargs.get("size", "md")
+    size_map = {
+        "sm": ("h-8 w-8",   "text-xs"),
+        "md": ("h-10 w-10", "text-sm"),
+        "lg": ("h-14 w-14", "text-base"),
+    }
+    size_class, text_class = size_map.get(size, size_map["md"])
+    return _render("components/avatar.html", {
+        "src":        kwargs.get("src", ""),
+        "alt":        kwargs.get("alt", ""),
+        "fallback":   kwargs.get("fallback", ""),
+        "size_class": size_class,
+        "text_class": text_class,
+        "class":      kwargs.get("class", ""),
+    })
+
+
+# ---------------------------------------------------------------------------
+# Switch
+#
+#   {% switch name="notifications" label="Enable notifications" %}
+#   {% switch name="dark" label="Dark mode" checked=True %}
+# ---------------------------------------------------------------------------
+@register.simple_tag
+def switch(**kwargs):
+    name = kwargs.get("name", "")
+    return _render("components/switch.html", {
+        "name":            name,
+        "id":              kwargs.get("id", name),
+        "value":           kwargs.get("value", ""),
+        "checked":         kwargs.get("checked", False),
+        "disabled":        kwargs.get("disabled", False),
+        "label":           kwargs.get("label", ""),
+        "container_class": kwargs.get("container_class", ""),
+        "input_class":     kwargs.get("input_class", ""),
+        "label_class":     kwargs.get("label_class", ""),
+        "attrs":           mark_safe(_build_attrs(kwargs)),
+    })
+
+
+# ---------------------------------------------------------------------------
+# Breadcrumb
+#
+#   {% breadcrumb %}
+#     {% breadcrumb_item href="/" %}Home{% endbreadcrumb_item %}
+#     {% breadcrumb_item href="/docs/" %}Docs{% endbreadcrumb_item %}
+#     {% breadcrumb_item %}Button{% endbreadcrumb_item %}
+#   {% endbreadcrumb %}
+# ---------------------------------------------------------------------------
+register.tag("breadcrumb",      _block("components/breadcrumb.html",      "endbreadcrumb"))
+register.tag("breadcrumb_item", _block("components/breadcrumb-item.html", "endbreadcrumb_item"))
+
+
+# ---------------------------------------------------------------------------
+# Accordion
+#
+#   {% accordion %}
+#     {% accordion_item title="Is it accessible?" %}
+#       Yes. It follows the WAI-ARIA design pattern.
+#     {% endaccordion_item %}
+#     {% accordion_item title="Is it styled?" open=True %}
+#       Yes. Comes with default styles that match the other components.
+#     {% endaccordion_item %}
+#   {% endaccordion %}
+# ---------------------------------------------------------------------------
+register.tag("accordion",      _block("components/accordion.html",      "endaccordion"))
+register.tag("accordion_item", _block("components/accordion-item.html", "endaccordion_item"))
+
+
+# ---------------------------------------------------------------------------
+# Tooltip
+#
+#   {% tooltip content="Save your changes" %}
+#     {% button variant="outline" %}Hover me{% endbutton %}
+#   {% endtooltip %}
+# ---------------------------------------------------------------------------
+register.tag("tooltip", _block("components/tooltip.html", "endtooltip"))
+
+
+# ---------------------------------------------------------------------------
 # Separator
 #
 #   {% separator %}

@@ -1,0 +1,1 @@
+{"name": "breadcrumb", "version": "1.1.0", "description": "Navigation fil d'Ariane", "files": ["breadcrumb.html", "breadcrumb-item.html"], "alpine": false, "htmx_ready": true, "dependencies": []}

@@ -1,0 +1,1 @@
+{"name": "progress", "version": "1.1.0", "description": "Barre de progression", "files": ["progress.html"], "alpine": false, "htmx_ready": true, "dependencies": []}
