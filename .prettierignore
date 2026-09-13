@@ -1,0 +1,4 @@
+# Django templates — Django's tokenizer does not support multiline template tags.
+# Never let any formatter reformat these files.
+demo/templates/
+templates/

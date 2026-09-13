@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load nexui_tags %}
+
+{% block title %}NexUI — Django UI Components{% endblock %}
+
+{% block content %}
+<div class="container mx-auto max-w-5xl px-6 py-12 space-y-16">
+
+  <!-- Header -->
+  <div class="text-center space-y-4">
+    <h1 class="text-4xl font-bold tracking-tight">NexUI</h1>
+    <p class="text-xl text-muted-foreground">UI components for Django. Copy, own, customize.</p>
+    <code class="text-sm text-muted-foreground bg-muted inline-block px-3 py-1 rounded">pip install nexui · nexui add button</code>
+  </div>
+
+  <!-- Button -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Button</h2>
+    <div class="flex flex-wrap gap-3 items-center">
+      {% button %}Default{% endbutton %}
+      {% button variant="secondary" %}Secondary{% endbutton %}
+      {% button variant="outline" %}Outline{% endbutton %}
+      {% button variant="ghost" %}Ghost{% endbutton %}
+      {% button variant="destructive" %}Destructive{% endbutton %}
+      {% button variant="link" %}Link{% endbutton %}
+    </div>
+    <div class="flex flex-wrap gap-3 items-center">
+      {% button variant="outline" size="sm" %}Small{% endbutton %}
+      {% button variant="outline" %}Medium{% endbutton %}
+      {% button variant="outline" size="lg" %}Large{% endbutton %}
+      {% button disabled=True %}Disabled{% endbutton %}
+    </div>
+  </section>
+
+  <!-- Badge -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Badge</h2>
+    <div class="flex flex-wrap gap-3 items-center">
+      {% badge %}Default{% endbadge %}
+      {% badge variant="secondary" %}Secondary{% endbadge %}
+      {% badge variant="destructive" %}Destructive{% endbadge %}
+      {% badge variant="outline" %}Outline{% endbadge %}
+    </div>
+  </section>
+
+  <!-- Alert -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Alert</h2>
+    <div class="space-y-3">
+      {% alert %}
+        {% alert_title %}Information{% endalert_title %}
+        {% alert_description %}Your session will expire in 30 minutes.{% endalert_description %}
+      {% endalert %}
+      {% alert variant="destructive" %}
+        {% alert_title %}Error{% endalert_title %}
+        {% alert_description %}Your account has been suspended. Contact support.{% endalert_description %}
+      {% endalert %}
+    </div>
+  </section>
+
+  <!-- Input -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Input</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+      {% input name="email" label="Email" type="email" placeholder="you@example.com" required=True %}
+      {% input name="password" label="Password" type="password" placeholder="••••••••" %}
+      {% input name="search" label="Search" placeholder="Search..." icon="🔍" icon_position="left" %}
+      {% input name="bio" label="Bio" hint="Max 160 characters." %}
+    </div>
+  </section>
+
+  <!-- Textarea -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Textarea</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+      {% textarea name="message" label="Message" placeholder="Write your message..." rows=4 %}
+      {% textarea name="bio" label="Bio" hint="Max 160 characters." placeholder="Tell us about yourself..." rows=4 %}
+    </div>
+  </section>
+
+  <!-- Select -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Select</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+      {% select name="role" label="Role" choices=role_choices placeholder="Select a role..." %}
+      {% select name="role2" label="Role (pre-selected)" choices=role_choices value="editor" %}
+    </div>
+  </section>
+
+  <!-- Checkbox & Radio -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Checkbox & Radio</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
+      <div class="space-y-3">
+        {% checkbox name="terms" label="J'accepte les conditions d'utilisation" required=True %}
+        {% checkbox name="newsletter" label="Recevoir les emails marketing" hint="Désactivable à tout moment." %}
+        {% checkbox name="active" label="Compte actif" checked=True %}
+        {% checkbox name="locked" label="Option désactivée" disabled=True %}
+      </div>
+      <div class="space-y-3">
+        <p class="text-sm font-medium">Choisir un plan</p>
+        {% radio name="plan" value="free" label="Free" %}
+        {% radio name="plan" value="pro" label="Pro" checked=True %}
+        {% radio name="plan" value="enterprise" label="Enterprise" %}
+        {% radio name="plan" value="legacy" label="Legacy (désactivé)" disabled=True %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Separator</h2>
+    <div class="space-y-4">
+      <p class="text-sm text-muted-foreground">Above the separator</p>
+      {% separator %}
+      <p class="text-sm text-muted-foreground">Below the separator</p>
+      <div class="flex h-8 items-center gap-4">
+        <span class="text-sm text-muted-foreground">Left</span>
+        {% separator orientation="vertical" %}
+        <span class="text-sm text-muted-foreground">Right</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Card</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {% card %}
+        {% card_header %}
+          {% card_title %}Total Revenue{% endcard_title %}
+          {% card_description %}Monthly earnings{% endcard_description %}
+        {% endcard_header %}
+        {% card_content %}
+          <p class="text-3xl font-bold">$45,231</p>
+          <p class="text-xs text-muted-foreground mt-1">+20.1% from last month</p>
+        {% endcard_content %}
+      {% endcard %}
+      {% card %}
+        {% card_header %}
+          {% card_title %}Active Users{% endcard_title %}
+          {% card_description %}Current sessions{% endcard_description %}
+        {% endcard_header %}
+        {% card_content %}
+          <p class="text-3xl font-bold">+2,350</p>
+          <p class="text-xs text-muted-foreground mt-1">+180.1% from last month</p>
+        {% endcard_content %}
+      {% endcard %}
+      {% card %}
+        {% card_header %}
+          {% card_title %}Sales{% endcard_title %}
+          {% card_description %}Units sold today{% endcard_description %}
+        {% endcard_header %}
+        {% card_content %}
+          <p class="text-3xl font-bold">+12,234</p>
+          <p class="text-xs text-muted-foreground mt-1">+19% from last month</p>
+        {% endcard_content %}
+      {% endcard %}
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Tabs</h2>
+    {% tabs active="overview" %}
+      {% tab id="overview" label="Overview" %}
+        <p class="text-sm text-muted-foreground">Make changes to your account here.</p>
+      {% endtab %}
+      {% tab id="analytics" label="Analytics" %}
+        <p class="text-sm text-muted-foreground">View your analytics dashboard here.</p>
+      {% endtab %}
+      {% tab id="settings" label="Settings" %}
+        <p class="text-sm text-muted-foreground">Manage your settings here.</p>
+      {% endtab %}
+    {% endtabs %}
+  </section>
+
+  <!-- Dropdown -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Dropdown</h2>
+    {% dropdown trigger_label="My Account" %}
+      {% dropdown_item href="/profile/" %}Profile{% enddropdown_item %}
+      {% dropdown_item href="/settings/" %}Settings{% enddropdown_item %}
+      {% dropdown_separator %}
+      {% dropdown_item href="/logout/" %}Logout{% enddropdown_item %}
+    {% enddropdown %}
+  </section>
+
+  <!-- Modal -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Modal</h2>
+    {% modal id="confirm" trigger_label="Open Modal" title="Are you sure?" description="This action cannot be undone." %}
+      <p class="text-sm text-muted-foreground">All data associated with your account will be permanently removed.</p>
+      <div class="mt-6 flex justify-end gap-2">
+        {% button variant="outline" %}Cancel{% endbutton %}
+        {% button variant="destructive" %}Delete{% endbutton %}
+      </div>
+    {% endmodal %}
+  </section>
+
+  <!-- Toast -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold tracking-tight border-b pb-2">Toast</h2>
+    <div class="flex flex-wrap gap-3">
+      <button type="button" @click="$dispatch('toast', { title: 'Saved!', description: 'Your changes have been saved.' })" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-accent h-10 px-4 py-2 transition-colors">Default</button>
+      <button type="button" @click="$dispatch('toast', { title: 'Success!', description: 'Operation completed.', variant: 'success' })" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-accent h-10 px-4 py-2 transition-colors">Success</button>
+      <button type="button" @click="$dispatch('toast', { title: 'Error', description: 'Something went wrong.', variant: 'destructive' })" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-accent h-10 px-4 py-2 transition-colors">Destructive</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t pt-8 text-center text-sm text-muted-foreground">
+    NexUI — Built for Django · Inspired by shadcn/ui ·
+    <a href="https://github.com/huguescodeur/nexui" class="underline underline-offset-4 hover:text-foreground">GitHub</a>
+  </footer>
+
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% comment %}NexUI Dropdown v1.0.0
+
+Usage:
+  {% dropdown trigger_label="My Account" %}
+    {% dropdown_item href="/profile/" %}Profile{% enddropdown_item %}
+    {% dropdown_item href="/settings/" %}Settings{% enddropdown_item %}
+    {% dropdown_separator %}
+    {% dropdown_item href="/logout/" %}Logout{% enddropdown_item %}
+  {% enddropdown %}
+{% endcomment %}
+<div x-data="{ open: false }" class="relative inline-block {{ class }}">
+  <button
+    type="button"
+    x-on:click="open = !open"
+    x-on:keydown.escape="open = false"
+    class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 {{ trigger_class }}"
+    aria-haspopup="true"
+    x-bind:aria-expanded="open"
+  >
+    {{ trigger_label }}
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" x-bind:class="open ? 'rotate-180' : ''" class="transition-transform duration-200"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+
+  <div
+    x-show="open"
+    x-on:click.outside="open = false"
+    x-transition:enter="transition ease-out duration-100"
+    x-transition:enter-start="opacity-0 scale-95"
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-75"
+    x-transition:leave-start="opacity-100 scale-100"
+    x-transition:leave-end="opacity-0 scale-95"
+    class="absolute right-0 z-50 mt-1 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md {{ menu_class }}"
+    style="display:none"
+    role="menu"
+  >{{ slot }}</div>
+</div>

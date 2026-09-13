@@ -1,0 +1,43 @@
+{% comment %}NexUI Input v1.0.0{% endcomment %}
+<div class="flex flex-col gap-1.5 {{ container_class }}">
+  {% if label %}
+  <label
+    {% if id %}for="{{ id }}"{% elif name %}for="{{ name }}"{% endif %}
+    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 {{ label_class }}"
+  >{{ label }}{% if required %}<span class="text-destructive ml-1">*</span>{% endif %}</label>
+  {% endif %}
+
+  <div class="relative {{ wrapper_class }}">
+    {% if icon and icon_position == "left" %}
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">{{ icon }}</span>
+    {% endif %}
+
+    <input
+      type="{{ type|default:'text' }}"
+      name="{{ name }}"
+      id="{{ id|default:name }}"
+      {% if value %}value="{{ value }}"{% endif %}
+      {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+      {% if required %}required{% endif %}
+      {% if disabled %}disabled{% endif %}
+      {% if readonly %}readonly{% endif %}
+      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
+        {% if icon and icon_position == 'left' %}pl-9{% endif %}
+        {% if icon and icon_position == 'right' %}pr-9{% endif %}
+        {{ input_class }}"
+      {{ attrs }}
+    />
+
+    {% if icon and icon_position == "right" %}
+    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">{{ icon }}</span>
+    {% endif %}
+  </div>
+
+  {% if hint %}
+  <p class="text-xs text-muted-foreground">{{ hint }}</p>
+  {% endif %}
+
+  {% if error %}
+  <p class="text-xs text-destructive">{{ error }}</p>
+  {% endif %}
+</div>

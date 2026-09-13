@@ -1,5 +1,0 @@
-include LICENSE
-include README.md
-recursive-include nexui/templates *
-recursive-include nexui/static *
-recursive-include nexui/templatetags *

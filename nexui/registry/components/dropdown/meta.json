@@ -1,0 +1,11 @@
+{
+  "name": "dropdown",
+  "version": "1.0.0",
+  "description": "Menu déroulant avec items et séparateurs, contrôlé par Alpine.js",
+  "files": ["dropdown.html"],
+  "js_files": [],
+  "alpine": true,
+  "htmx_ready": true,
+  "dependencies": [],
+  "usage": "{% include \"components/dropdown.html\" with trigger_label=\"Options\" items=items_list %}"
+}

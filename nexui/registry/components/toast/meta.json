@@ -1,0 +1,11 @@
+{
+  "name": "toast",
+  "version": "1.0.0",
+  "description": "Système de notifications toast via Alpine.js. À placer une fois dans base.html.",
+  "files": ["toast.html"],
+  "js_files": ["toast.js"],
+  "alpine": true,
+  "htmx_ready": false,
+  "dependencies": [],
+  "usage": "{% include \"components/toast.html\" %}"
+}

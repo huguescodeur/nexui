@@ -1,0 +1,2 @@
+# Django templates — formatters break {% %} tags across multiple lines
+templates/

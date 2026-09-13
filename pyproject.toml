@@ -4,37 +4,39 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nexui"
-version = "0.2.4"
-description = "Library of modern UI components with optional HTMX support"
+version = "1.0.0"
+description = "UI components for Django — copy, own, customize. Inspired by shadcn/ui."
 authors = [
     {name = "Hugues Codeur", email = "huguescodeur@gmail.com"}
 ]
-readme = "README.md"  
-requires-python = ">=3.12"
+readme = "README.md"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: Django",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.12",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "Django >= 5.1",
-    "django-tailwind >= 3.8.0",
+    "click>=8.0",
+    "rich>=13.0",
 ]
 
-[project.optional-dependencies]
-htmx = [
-    "django-htmx >= 1.17.2",
-]
-
-[tool.setuptools]
-packages = ["nexui"]
-include-package-data = true
+[project.scripts]
+nexui = "nexui.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/huguescodeur/nexui"
+Documentation = "https://github.com/huguescodeur/nexui#readme"
 Issues = "https://github.com/huguescodeur/nexui/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nexui*"]
+
+[tool.setuptools.package-data]
+nexui = ["registry/components/**/*", "registry/base.css"]

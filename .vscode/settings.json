@@ -1,0 +1,11 @@
+{
+  "[html]": {
+    "editor.defaultFormatter": "monosans.djlint",
+    "editor.formatOnSave": true
+  },
+  "files.associations": {
+    "*.html": "django-html"
+  },
+  "prettier.ignorePath": ".prettierignore",
+  "djlint.showInstallError": false
+}

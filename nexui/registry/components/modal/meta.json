@@ -1,0 +1,11 @@
+{
+  "name": "modal",
+  "version": "1.0.0",
+  "description": "Dialog modal contrôlé par Alpine.js. Ouverture via événement ou bouton intégré.",
+  "files": ["modal.html"],
+  "js_files": [],
+  "alpine": true,
+  "htmx_ready": true,
+  "dependencies": [],
+  "usage": "{% include \"components/modal.html\" with id=\"my-modal\" title=\"Title\" %}"
+}

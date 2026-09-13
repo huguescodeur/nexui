@@ -1,0 +1,20 @@
+{% comment %}NexUI Radio v1.0.0{% endcomment %}
+<div class="flex items-center gap-2 {{ container_class }}">
+  <input
+    type="radio"
+    name="{{ name }}"
+    id="{{ id }}"
+    value="{{ value }}"
+    {% if checked %}checked{% endif %}
+    {% if required %}required{% endif %}
+    {% if disabled %}disabled{% endif %}
+    class="h-4 w-4 border border-input accent-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 {{ input_class }}"
+    {{ attrs }}
+  />
+  {% if label %}
+  <label
+    for="{{ id }}"
+    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 {{ label_class }}"
+  >{{ label }}</label>
+  {% endif %}
+</div>
