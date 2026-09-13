@@ -414,6 +414,36 @@ def select(**kwargs):
 
 
 # ---------------------------------------------------------------------------
+# Table
+#
+#   {% table %}
+#     {% table_header %}
+#       {% table_row %}
+#         {% table_head %}Name{% endtable_head %}
+#         {% table_head %}Status{% endtable_head %}
+#       {% endtable_row %}
+#     {% endtable_header %}
+#     {% table_body %}
+#       {% for user in users %}
+#       {% table_row %}
+#         {% table_cell %}{{ user.name }}{% endtable_cell %}
+#         {% table_cell %}{{ user.status }}{% endtable_cell %}
+#       {% endtable_row %}
+#       {% endfor %}
+#     {% endtable_body %}
+#   {% endtable %}
+# ---------------------------------------------------------------------------
+register.tag("table",         _block("components/table.html",         "endtable"))
+register.tag("table_header",  _block("components/table-header.html",  "endtable_header"))
+register.tag("table_body",    _block("components/table-body.html",    "endtable_body"))
+register.tag("table_footer",  _block("components/table-footer.html",  "endtable_footer"))
+register.tag("table_row",     _block("components/table-row.html",     "endtable_row"))
+register.tag("table_head",    _block("components/table-head.html",    "endtable_head"))
+register.tag("table_cell",    _block("components/table-cell.html",    "endtable_cell"))
+register.tag("table_caption", _block("components/table-caption.html", "endtable_caption"))
+
+
+# ---------------------------------------------------------------------------
 # Separator
 #
 #   {% separator %}
