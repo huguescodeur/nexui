@@ -6,6 +6,8 @@ UI components for Django. Copy, own, customize. Inspired by [shadcn/ui](https://
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/silkui)](https://pypi.org/project/silkui/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+**[Documentation →](https://silkui-docs.onrender.com)**
+
 ---
 
 ## Philosophy
@@ -710,6 +712,286 @@ def save(request):
     response = HttpResponse()
     response["HX-Trigger"] = '{"toast": {"title": "Saved!", "variant": "success"}}'
     return response
+```
+
+---
+
+### Table
+
+```bash
+silkui add table
+```
+
+**Parameters**
+
+| Component | Parameters | Description |
+|---|---|---|
+| `table` | `class` | Outer wrapper with overflow and border |
+| `table_header` | `class` | `<thead>` |
+| `table_body` | `class` | `<tbody>` |
+| `table_footer` | `class` | `<tfoot>` |
+| `table_row` | `class` | `<tr>` |
+| `table_head` | `class` | `<th>` header cell |
+| `table_cell` | `class` | `<td>` data cell |
+| `table_caption` | `class` | `<caption>` |
+
+**Usage**
+
+```django
+{% table %}
+  {% table_header %}
+    {% table_row %}
+      {% table_head %}Name{% endtable_head %}
+      {% table_head %}Email{% endtable_head %}
+      {% table_head %}Role{% endtable_head %}
+    {% endtable_row %}
+  {% endtable_header %}
+  {% table_body %}
+    {% for user in users %}
+      {% table_row %}
+        {% table_cell %}{{ user.name }}{% endtable_cell %}
+        {% table_cell %}{{ user.email }}{% endtable_cell %}
+        {% table_cell %}{{ user.role }}{% endtable_cell %}
+      {% endtable_row %}
+    {% endfor %}
+  {% endtable_body %}
+{% endtable %}
+```
+
+---
+
+### Spinner
+
+```bash
+silkui add spinner
+```
+
+**Parameters**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `size` | `sm` `md` `lg` | `md` | Spinner size |
+| `class` | string | — | Extra Tailwind classes (e.g. `text-primary`) |
+
+**Usage**
+
+```django
+{% spinner %}
+{% spinner size="sm" %}
+{% spinner size="lg" class="text-primary" %}
+
+{% button disabled=True %}
+  {% spinner size="sm" %} Loading...
+{% endbutton %}
+```
+
+---
+
+### Skeleton
+
+```bash
+silkui add skeleton
+```
+
+**Parameters**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `class` | string | — | Shape and size via Tailwind classes |
+
+**Usage**
+
+```django
+{% skeleton class="h-4 w-48" %}
+{% skeleton class="h-10 w-full rounded-md" %}
+
+<div class="space-y-2">
+  {% skeleton class="h-4 w-3/4" %}
+  {% skeleton class="h-4 w-1/2" %}
+</div>
+```
+
+---
+
+### Progress
+
+```bash
+silkui add progress
+```
+
+**Parameters**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `value` | 0–100 | `0` | Current progress value |
+| `max` | number | `100` | Maximum value |
+| `class` | string | — | Extra Tailwind classes |
+
+**Usage**
+
+```django
+{% progress value=33 %}
+{% progress value=66 class="h-3" %}
+{% progress value=upload_percent %}
+```
+
+---
+
+### Avatar
+
+```bash
+silkui add avatar
+```
+
+**Parameters**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `src` | string | — | Image URL |
+| `alt` | string | — | Image alt text |
+| `fallback` | string | — | Initials or text shown when no image |
+| `size` | `sm` `md` `lg` | `md` | Avatar size |
+| `class` | string | — | Extra Tailwind classes |
+
+**Usage**
+
+```django
+{% avatar src=user.avatar_url alt=user.name %}
+{% avatar fallback="JD" %}
+{% avatar src=user.avatar_url fallback="JD" size="lg" %}
+{% avatar fallback="AB" size="sm" %}
+```
+
+---
+
+### Switch
+
+```bash
+silkui add switch
+```
+
+**Parameters**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `name` | string | — | Field name (required) |
+| `id` | string | same as `name` | HTML id |
+| `label` | string | — | Label text |
+| `value` | string | — | Value submitted when on |
+| `checked` | bool | `False` | Pre-toggled state |
+| `disabled` | bool | `False` | Disables the switch |
+| `container_class` | string | — | Classes on the wrapper |
+| `input_class` | string | — | Classes on the `<input>` |
+| `label_class` | string | — | Classes on the `<label>` |
+
+**Usage**
+
+```django
+{% switch name="notifications" label="Email notifications" %}
+{% switch name="marketing" label="Marketing emails" checked=True %}
+{% switch name="feature_flag" label="Beta features" disabled=True %}
+```
+
+---
+
+### Breadcrumb
+
+```bash
+silkui add breadcrumb
+```
+
+**Parameters**
+
+| Component | Parameters | Description |
+|---|---|---|
+| `breadcrumb` | `class` | `<nav>` + `<ol>` wrapper |
+| `breadcrumb_item` | `href` `class` | With `href` → link + separator. Without `href` → current page |
+
+**Usage**
+
+```django
+{% breadcrumb %}
+  {% breadcrumb_item href="/" %}Home{% endbreadcrumb_item %}
+  {% breadcrumb_item href="/docs/" %}Documentation{% endbreadcrumb_item %}
+  {% breadcrumb_item %}Breadcrumb{% endbreadcrumb_item %}
+{% endbreadcrumb %}
+
+{% breadcrumb %}
+  {% for crumb in breadcrumbs %}
+    {% if forloop.last %}
+      {% breadcrumb_item %}{{ crumb.label }}{% endbreadcrumb_item %}
+    {% else %}
+      {% breadcrumb_item href=crumb.url %}{{ crumb.label }}{% endbreadcrumb_item %}
+    {% endif %}
+  {% endfor %}
+{% endbreadcrumb %}
+```
+
+---
+
+### Accordion
+
+```bash
+silkui add accordion
+```
+
+**Parameters — `accordion`**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `class` | string | — | Extra Tailwind classes |
+
+**Parameters — `accordion_item`**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `title` | string | — | Trigger button text (required) |
+| `open` | bool | `False` | Open by default |
+| `class` | string | — | Extra Tailwind classes |
+
+**Usage**
+
+```django
+{% accordion %}
+  {% accordion_item title="What is SilkUI?" %}
+    SilkUI is a copy-paste component library for Django templates.
+  {% endaccordion_item %}
+  {% accordion_item title="Is it a Django app?" %}
+    No. Components are copied into your project — you own the code.
+  {% endaccordion_item %}
+  {% accordion_item title="Does it need Alpine.js?" open=True %}
+    Yes, Alpine.js is required for interactive components like accordion, modal, and tabs.
+  {% endaccordion_item %}
+{% endaccordion %}
+```
+
+---
+
+### Tooltip
+
+```bash
+silkui add tooltip
+```
+
+The first child is the trigger element; the `tip` kwarg is the tooltip text shown on hover.
+
+**Parameters**
+
+| Parameter | Values | Default | Description |
+|---|---|---|---|
+| `tip` | string | — | Tooltip text (required) |
+| `class` | string | — | Extra classes on the tooltip bubble |
+
+**Usage**
+
+```django
+{% tooltip tip="Copy to clipboard" %}
+  <button>Copy</button>
+{% endtooltip %}
+
+{% tooltip tip="This action cannot be undone" %}
+  {% button variant="destructive" %}Delete{% endbutton %}
+{% endtooltip %}
 ```
 
 ---
