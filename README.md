@@ -46,46 +46,46 @@ This creates:
 - `templates/components/` — where your component files will live
 - `.vscode/settings.json` — configures djlint as the HTML formatter (see [Formatter](#formatter))
 
-Add to your `base.html`:
+### With Tailwind installed via npm (recommended for real projects)
+
+Add the NexUI colors to your `tailwind.config.js`:
+
+```js
+// tailwind.config.js
+module.exports = {
+  content: ["./templates/**/*.html"],
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
+        secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
+        destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
+        muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
+        accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
+        card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+        popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
+  },
+}
+```
+
+Then in `base.html`, just link the compiled CSS:
 
 ```html
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- NexUI theme variables -->
-  <link rel="stylesheet" href="{% static 'css/nexui.css' %}">
-
-  <!-- Tailwind CDN + NexUI color config -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            border: "hsl(var(--border))",
-            input: "hsl(var(--input))",
-            ring: "hsl(var(--ring))",
-            background: "hsl(var(--background))",
-            foreground: "hsl(var(--foreground))",
-            primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
-            secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
-            destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
-            muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
-            accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
-            card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
-            popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
-          },
-          borderRadius: {
-            lg: "var(--radius)",
-            md: "calc(var(--radius) - 2px)",
-            sm: "calc(var(--radius) - 4px)",
-          },
-        },
-      },
-    }
-  </script>
-</head>
+<link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+<link rel="stylesheet" href="{% static 'css/nexui.css' %}">
 
 <!-- x-data on body so all components share the same Alpine scope -->
 <body x-data>
@@ -94,10 +94,42 @@ Add to your `base.html`:
   <!-- Alpine.js — required for modal, dropdown, tabs, toast -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 </body>
-</html>
 ```
 
-> **Why the Tailwind config block?** NexUI uses CSS variable-based colors (`--primary`, `--destructive`…). Tailwind doesn't know these by default. The config block maps them so classes like `bg-primary` and `text-destructive` work. It uses `theme.extend` — all standard Tailwind classes (`bg-blue-500`, `text-gray-700`, `p-4`…) continue to work normally alongside NexUI classes.
+### With Tailwind CDN (quick start / prototyping only)
+
+```html
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/nexui.css' %}">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          border: "hsl(var(--border))", input: "hsl(var(--input))", ring: "hsl(var(--ring))",
+          background: "hsl(var(--background))", foreground: "hsl(var(--foreground))",
+          primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
+          secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
+          destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
+          muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
+          accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
+          card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+          popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
+        },
+        borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
+      },
+    },
+  }
+</script>
+
+<body x-data>
+  {% block content %}{% endblock %}
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+</body>
+```
+
+> The CDN inline config is required because Tailwind CDN doesn't read `tailwind.config.js`. With npm this goes in the config file and `base.html` stays clean.
 
 ---
 
