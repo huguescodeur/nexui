@@ -110,7 +110,7 @@
   <!-- NexUI Toast JS (must load before Alpine) -->
   <script>
     document.addEventListener("alpine:init", () => {
-      Alpine.data("nexuiToast", () => ({
+      Alpine.data("silkuiToast", () => ({
         toasts: [],
         show({ title, description = "", variant = "default", duration = 4000 }) {
           const id = Date.now() + Math.random();

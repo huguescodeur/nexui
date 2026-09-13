@@ -2,13 +2,13 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "nexui-demo-secret-key-not-for-production"
+SECRET_KEY = "silkui-demo-secret-key-not-for-production"
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "django.contrib.staticfiles",
-    "nexui",
+    "silkui",
     "pages",
 ]
 

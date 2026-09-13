@@ -1,0 +1,11 @@
+{
+  "name": "input",
+  "version": "1.0.0",
+  "description": "Champ de saisie avec label, placeholder, icône et support HTMX",
+  "files": ["input.html"],
+  "js_files": [],
+  "alpine": false,
+  "htmx_ready": true,
+  "dependencies": [],
+  "usage": "{% include \"components/input.html\" with name=\"email\" label=\"Email\" type=\"email\" placeholder=\"you@example.com\" %}"
+}

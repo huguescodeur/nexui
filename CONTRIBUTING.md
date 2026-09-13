@@ -1,4 +1,4 @@
-# Contributing to NexUI
+# Contributing to SilkUI
 
 ## Ways to contribute
 
@@ -9,8 +9,8 @@
 ## Running the demo locally
 
 ```bash
-git clone https://github.com/huguescodeur/nexui.git
-cd nexui
+git clone https://github.com/huguescodeur/silkui.git
+cd silkui
 python -m venv venv && source venv/bin/activate
 pip install -e ".[dev]"
 python demo/manage.py runserver
@@ -20,10 +20,10 @@ Open [http://localhost:8000](http://localhost:8000).
 
 ## Adding a new component
 
-1. Create `nexui/registry/components/<name>/` with:
+1. Create `silkui/registry/components/<name>/` with:
    - `<name>.html` — the template
    - `meta.json` — metadata (name, description, files, usage example)
-2. Register the tag in `nexui/templatetags/nexui_tags.py`
+2. Register the tag in `silkui/templatetags/silkui_tags.py`
 3. Add a demo section in `demo/templates/index.html`
 4. Sync the template to `demo/templates/components/`
 

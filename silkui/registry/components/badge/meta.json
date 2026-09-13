@@ -1,0 +1,11 @@
+{
+  "name": "badge",
+  "version": "1.0.0",
+  "description": "Badge compact avec variantes (default, secondary, destructive, outline)",
+  "files": ["badge.html"],
+  "js_files": [],
+  "alpine": false,
+  "htmx_ready": false,
+  "dependencies": [],
+  "usage": "{% include \"components/badge.html\" with label=\"New\" variant=\"default\" %}"
+}

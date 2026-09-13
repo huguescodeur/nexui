@@ -1,16 +1,16 @@
-# NexUI
+# SilkUI
 
 UI components for Django. Copy, own, customize. Inspired by [shadcn/ui](https://ui.shadcn.com/).
 
-[![PyPI version](https://img.shields.io/pypi/v/nexui)](https://pypi.org/project/nexui/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/nexui)](https://pypi.org/project/nexui/)
+[![PyPI version](https://img.shields.io/pypi/v/silkui)](https://pypi.org/project/silkui/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/silkui)](https://pypi.org/project/silkui/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
 ## Philosophy
 
-NexUI is not a traditional dependency. When you run `nexui add button`, it copies `button.html` directly into your project's `templates/components/` directory. **You own the code.** Edit the Tailwind classes, change the structure, add your own logic — no upstream updates will ever overwrite your work.
+SilkUI is not a traditional dependency. When you run `silkui add button`, it copies `button.html` directly into your project's `templates/components/` directory. **You own the code.** Edit the Tailwind classes, change the structure, add your own logic — no upstream updates will ever overwrite your work.
 
 Components are Django template tags built on:
 - **Tailwind CSS** — utility classes for styling
@@ -22,7 +22,7 @@ Components are Django template tags built on:
 ## Installation
 
 ```bash
-pip install nexui
+pip install silkui
 ```
 
 Add to `INSTALLED_APPS` in `settings.py`:
@@ -30,25 +30,25 @@ Add to `INSTALLED_APPS` in `settings.py`:
 ```python
 INSTALLED_APPS = [
     ...
-    "nexui",
+    "silkui",
 ]
 ```
 
 Run the initializer in your project root:
 
 ```bash
-nexui init
+silkui init
 ```
 
 This creates:
-- `nexui.json` — project config
-- `static/css/nexui.css` — CSS variables for theming
+- `silkui.json` — project config
+- `static/css/silkui.css` — CSS variables for theming
 - `templates/components/` — where your component files will live
 - `.vscode/settings.json` — configures djlint as the HTML formatter (see [Formatter](#formatter))
 
 ### With Tailwind installed via npm (recommended for real projects)
 
-Add the NexUI colors to your `tailwind.config.js`:
+Add the SilkUI colors to your `tailwind.config.js`:
 
 ```js
 // tailwind.config.js
@@ -85,7 +85,7 @@ Then in `base.html`, just link the compiled CSS:
 ```html
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
-<link rel="stylesheet" href="{% static 'css/nexui.css' %}">
+<link rel="stylesheet" href="{% static 'css/silkui.css' %}">
 
 <!-- x-data on body so all components share the same Alpine scope -->
 <body x-data>
@@ -100,7 +100,7 @@ Then in `base.html`, just link the compiled CSS:
 
 ```html
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/nexui.css' %}">
+<link rel="stylesheet" href="{% static 'css/silkui.css' %}">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -136,10 +136,10 @@ Then in `base.html`, just link the compiled CSS:
 ## CLI
 
 ```bash
-nexui add button           # add a single component
-nexui add button card tabs # add multiple at once
-nexui add --all            # add every available component
-nexui list                 # list available and installed components
+silkui add button           # add a single component
+silkui add button card tabs # add multiple at once
+silkui add --all            # add every available component
+silkui list                 # list available and installed components
 ```
 
 ---
@@ -149,7 +149,7 @@ nexui list                 # list available and installed components
 Load the tags at the top of any template:
 
 ```django
-{% load nexui_tags %}
+{% load silkui_tags %}
 ```
 
 ---
@@ -161,7 +161,7 @@ Load the tags at the top of any template:
 ### Button
 
 ```bash
-nexui add button
+silkui add button
 ```
 
 **Parameters**
@@ -202,7 +202,7 @@ nexui add button
 ### Badge
 
 ```bash
-nexui add badge
+silkui add badge
 ```
 
 **Parameters**
@@ -226,7 +226,7 @@ nexui add badge
 ### Alert
 
 ```bash
-nexui add alert
+silkui add alert
 ```
 
 **Parameters — `alert`**
@@ -261,7 +261,7 @@ nexui add alert
 ### Card
 
 ```bash
-nexui add card
+silkui add card
 ```
 
 **Parameters**
@@ -305,7 +305,7 @@ Sub-components can be used independently:
 ### Input
 
 ```bash
-nexui add input
+silkui add input
 ```
 
 **Parameters**
@@ -353,7 +353,7 @@ nexui add input
 ### Textarea
 
 ```bash
-nexui add textarea
+silkui add textarea
 ```
 
 **Parameters**
@@ -389,7 +389,7 @@ nexui add textarea
 ### Select
 
 ```bash
-nexui add select
+silkui add select
 ```
 
 **Parameters**
@@ -437,7 +437,7 @@ ROLE_CHOICES = [
 ### Checkbox
 
 ```bash
-nexui add checkbox
+silkui add checkbox
 ```
 
 **Parameters**
@@ -472,7 +472,7 @@ nexui add checkbox
 ### Radio
 
 ```bash
-nexui add radio
+silkui add radio
 ```
 
 Group radios by sharing the same `name`. The `id` is auto-generated as `name-value` (e.g. `name="plan"` + `value="pro"` → `id="plan-pro"`).
@@ -507,7 +507,7 @@ Group radios by sharing the same `name`. The `id` is auto-generated as `name-val
 ### Separator
 
 ```bash
-nexui add separator
+silkui add separator
 ```
 
 **Parameters**
@@ -536,7 +536,7 @@ nexui add separator
 ### Tabs
 
 ```bash
-nexui add tabs
+silkui add tabs
 ```
 
 **Parameters — `tabs`**
@@ -579,7 +579,7 @@ nexui add tabs
 ### Dropdown
 
 ```bash
-nexui add dropdown
+silkui add dropdown
 ```
 
 **Parameters — `dropdown`**
@@ -622,7 +622,7 @@ nexui add dropdown
 ### Modal
 
 ```bash
-nexui add modal
+silkui add modal
 ```
 
 **Parameters**
@@ -669,7 +669,7 @@ nexui add modal
 ### Toast
 
 ```bash
-nexui add toast
+silkui add toast
 ```
 
 Place **once** in `base.html`, inside `<body x-data>`:
@@ -733,7 +733,7 @@ Every component accepts `hx_*` kwargs. Underscores convert to hyphens automatica
 
 ## Theming
 
-Edit `static/css/nexui.css` to change colors and radius. All components use these CSS variables:
+Edit `static/css/silkui.css` to change colors and radius. All components use these CSS variables:
 
 ```css
 :root {
@@ -755,7 +755,7 @@ One change propagates to every component that uses that variable.
 
 Django template tags **must stay on a single line**. Prettier and most HTML formatters break them when reformatting across lines.
 
-`nexui init` automatically configures [djlint](https://djlint.com/) as the HTML formatter in `.vscode/settings.json`. djlint understands Django syntax and formats without breaking tags. VS Code will prompt you to install it on first open.
+`silkui init` automatically configures [djlint](https://djlint.com/) as the HTML formatter in `.vscode/settings.json`. djlint understands Django syntax and formats without breaking tags. VS Code will prompt you to install it on first open.
 
 This only affects the current workspace — your other projects (React, Flask, etc.) are unaffected.
 
@@ -765,7 +765,7 @@ This only affects the current workspace — your other projects (React, Flask, e
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Issues and feedback: [github.com/huguescodeur/nexui/issues](https://github.com/huguescodeur/nexui/issues)
+Issues and feedback: [github.com/huguescodeur/silkui/issues](https://github.com/huguescodeur/silkui/issues)
 
 ---
 

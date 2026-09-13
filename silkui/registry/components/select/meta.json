@@ -1,0 +1,11 @@
+{
+  "name": "select",
+  "version": "1.0.0",
+  "description": "Menu déroulant natif avec label, hint et error. choices = liste de tuples (value, label).",
+  "files": ["select.html"],
+  "js_files": [],
+  "alpine": false,
+  "htmx_ready": true,
+  "dependencies": [],
+  "usage": "{% select name=\"role\" label=\"Role\" choices=role_choices placeholder=\"Pick one\" %}"
+}
