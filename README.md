@@ -50,46 +50,54 @@ Add to your `base.html`:
 
 ```html
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- NexUI theme variables -->
+  <link rel="stylesheet" href="{% static 'css/nexui.css' %}">
 
-<link rel="stylesheet" href="{% static 'css/nexui.css' %}">
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          border: "hsl(var(--border))",
-          background: "hsl(var(--background))",
-          foreground: "hsl(var(--foreground))",
-          primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
-          secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
-          destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
-          muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
-          accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
-          card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
-          popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
-          ring: "hsl(var(--ring))",
-          input: "hsl(var(--input))",
-        },
-        borderRadius: {
-          lg: "var(--radius)",
-          md: "calc(var(--radius) - 2px)",
-          sm: "calc(var(--radius) - 4px)",
+  <!-- Tailwind CDN + NexUI color config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: "hsl(var(--border))",
+            input: "hsl(var(--input))",
+            ring: "hsl(var(--ring))",
+            background: "hsl(var(--background))",
+            foreground: "hsl(var(--foreground))",
+            primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
+            secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
+            destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
+            muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
+            accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
+            card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+            popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
+          },
+          borderRadius: {
+            lg: "var(--radius)",
+            md: "calc(var(--radius) - 2px)",
+            sm: "calc(var(--radius) - 4px)",
+          },
         },
       },
-    },
-  }
-</script>
+    }
+  </script>
+</head>
 
-<!-- Required for modal, dropdown, tabs, toast -->
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+<!-- x-data on body so all components share the same Alpine scope -->
+<body x-data>
+  {% block content %}{% endblock %}
+
+  <!-- Alpine.js — required for modal, dropdown, tabs, toast -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+</body>
+</html>
 ```
 
-> **Alpine.js scope:** add `x-data` to your `<body>` tag so all components share the same Alpine scope:
-> ```html
-> <body x-data>
-> ```
+> **Why the Tailwind config block?** NexUI uses CSS variable-based colors (`--primary`, `--destructive`…). Tailwind doesn't know these by default. The config block maps them so classes like `bg-primary` and `text-destructive` work. It uses `theme.extend` — all standard Tailwind classes (`bg-blue-500`, `text-gray-700`, `p-4`…) continue to work normally alongside NexUI classes.
 
 ---
 
